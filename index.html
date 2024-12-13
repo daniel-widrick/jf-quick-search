@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Search Songs</title>
+  <script src="https://unpkg.com/htmx.org@1.8.1"></script>
+<style>
+	#search {
+		min-width: 600px;
+	}
+</style>
+</head>
+<body>
+  <h1>Search Songs</h1>
+  
+  <!-- Search input field with htmx -->
+  <form>
+	  <input type="text" id="search" list="results" placeholder="Search for a song...">
+	  <datalist id="results">
+		  <option value="The Real Slim Shady" />
+		  <option value="Down with the Sickness" />
+	  </datalist>
+  </form>
+  
+  <!-- Placeholder for autofill results -->
+  <audio controls>
+	  <source id="audioSource">
+	</audio>
+  <div id="final">
+
+  </div>
+
+  <script>
+    // Optional: Handle the display of results to show Name and Artists
+	resultsEl = document.getElementById("results")
+	finalEl = document.getElementById("final")
+	audioSourceEl = document.getElementById("audioSource")
+
+	function play(id){
+		audioURL = "/Audio/"+id+"/stream.ogg"
+		audioSourceEl.src = audioURL
+		p = audioSourceEl.parentElement
+		p.load()
+		p.play().catch(error => {
+			console.error("Error playing audio:", error)
+		})
+	}
+		
+
+
+    document.getElementById("search").addEventListener("input", function() {
+		 searchValue = this.value
+		 fetch('/search/?q=' + encodeURIComponent(searchValue))
+			.then(response => response.json())
+			.then(data => {
+				resultsEl.innerHTML = "";
+				finalEl.innerHTML = "";
+				for(let x = 0; x < data.length && x < 5; x++) {
+					c = document.createElement("option")
+					artist = ""
+					data[x].Artists.forEach( a => {
+						artist = artist + a + ", "
+					})
+					c.value = data[x].Name + " - " + artist + " | " + data[x].Album
+					resultsEl.appendChild(c)
+
+					link = document.createElement("a")
+					link.href = "#"
+					link.audioid = data[x].id
+					link.onclick = function(event) { play(data[x].Id) }
+					finalEl.appendChild(link)
+					finalEl.appendChild(document.createElement("br"))
+					link.innerHTML = data[x].Name + " - " + artist + " | " + data[x].Album
+				}
+				
+			
+
+
+			})
+			.catch(error => {
+				console.error("Error fetching search results: ", error)
+			})
+      // htmx will update the #results element with the server response automatically
+    });
+  </script>
+</body>
+</html>
+
