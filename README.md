@@ -20,6 +20,8 @@ The search algorithm is.... non-elegant. This whole think is a hack.
 
 5) click the link to begin playback
 
+Note: New scrapes happen when the application starts.
+
 ---
 
 Do not expose to public internet - There is no authentication
