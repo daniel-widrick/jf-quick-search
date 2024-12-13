@@ -18,8 +18,6 @@
   <form>
 	  <input type="text" id="search" list="results" placeholder="Search for a song...">
 	  <datalist id="results">
-		  <option value="The Real Slim Shady" />
-		  <option value="Down with the Sickness" />
 	  </datalist>
   </form>
   
@@ -57,13 +55,13 @@
 				resultsEl.innerHTML = "";
 				finalEl.innerHTML = "";
 				for(let x = 0; x < data.length && x < 5; x++) {
-					c = document.createElement("option")
+					//c = document.createElement("option")
 					artist = ""
 					data[x].Artists.forEach( a => {
 						artist = artist + a + ", "
 					})
-					c.value = data[x].Name + " - " + artist + " | " + data[x].Album
-					resultsEl.appendChild(c)
+					//c.value = data[x].Name + " - " + artist + " | " + data[x].Album
+					//resultsEl.appendChild(c)
 
 					link = document.createElement("a")
 					link.href = "#"
