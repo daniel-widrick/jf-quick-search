@@ -6,6 +6,8 @@ This simple app is designed to to connect to your local jellyfin instance, pull 
 
 The search algorithm is.... non-elegant. This whole think is a hack.
 
+![jf-quick-search](https://github.com/user-attachments/assets/f3676240-0f7a-4a45-a0f4-1a6a325e8b22)
+
 ## Instructions:
 
 1) Log into the jellyfin server Dashboard and create a new api key
