@@ -4,7 +4,7 @@ An ugly as sin proof of concept from a random web request
 
 This simple app is designed to to connect to your local jellyfin instance, pull all audio items from the api, cache them in a local sqlite database, and then serve a web interface with search results at a reasonable speed.
 
-The search algorithm is.... non-elegant. This whole think is a hack.
+The search algorithm is.... non-elegant. This whole thing is a hack.
 
 ![jf-quick-search](https://github.com/user-attachments/assets/f3676240-0f7a-4a45-a0f4-1a6a325e8b22)
 
@@ -26,7 +26,7 @@ Note: New scrapes happen when the application starts.
 
 Do not expose to public internet - There is no authentication
 
-This service actually proxies the stream from jellyfin (It was getting late and i didn't want to hack in templates to update the audio source url intot he html).
+This service actually proxies the stream from jellyfin (It was getting late and I didn't want to hack in templates to update the audio source url into the html).
 
 ---
 
